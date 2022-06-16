@@ -7,7 +7,7 @@ require('dotenv').config()
 
 let db,
     dbConnectionStr = process.env.DB_STRING,
-    dbName = 'rap'
+    dbName = 'movie-club'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
@@ -22,25 +22,25 @@ app.use(express.json())
 
 
 app.get('/',(request, response)=>{
-    db.collection('rappers').find().sort({likes: -1}).toArray()
+    db.collection('movies').find().sort({likes: -1}).toArray()
     .then(data => {
         response.render('index.ejs', { info: data })
     })
     .catch(error => console.error(error))
 })
 
-app.post('/addRapper', (request, response) => {
-    db.collection('rappers').insertOne({stageName: request.body.stageName,
-    birthName: request.body.birthName, likes: 0})
+app.post('/addMovie', (request, response) => {
+    db.collection('movies').insertOne({movieName: request.body.movieName,
+    foodName: request.body.foodName, likes: 0})
     .then(result => {
-        console.log('Rapper Added')
+        console.log('Movie added')
         response.redirect('/')
     })
     .catch(error => console.error(error))
 })
 
 app.put('/addOneLike', (request, response) => {
-    db.collection('rappers').updateOne({stageName: request.body.stageNameS, birthName: request.body.birthNameS,likes: request.body.likesS},{
+    db.collection('movies').updateOne({stageName: request.body.stageNameS, birthName: request.body.birthNameS,likes: request.body.likesS},{
         $set: {
             likes:request.body.likesS + 1
           }
@@ -56,11 +56,11 @@ app.put('/addOneLike', (request, response) => {
 
 })
 
-app.delete('/deleteRapper', (request, response) => {
-    db.collection('rappers').deleteOne({stageName: request.body.stageNameS})
+app.delete('/deleteMovie', (request, response) => {
+    db.collection('movies').deleteOne({stageName: request.body.stageNameS})
     .then(result => {
-        console.log('Rapper Deleted')
-        response.json('Rapper Deleted')
+        console.log('Movie Deleted')
+        response.json('Movie Deleted')
     })
     .catch(error => console.error(error))
 
