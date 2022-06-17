@@ -5,6 +5,13 @@ const PORT = 2121
 require('dotenv').config()
 
 
+Object.defineProperty(String.prototype, 'capitalize', {
+    value: function() {
+      return this.charAt(0).toUpperCase() + this.slice(1);
+    },
+    enumerable: false
+  });
+
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'movie-club'
@@ -31,7 +38,7 @@ app.get('/',(request, response)=>{
 
 app.post('/addMovie', (request, response) => {
     db.collection('movies').insertOne({movieName: request.body.movieNameS,
-    foodName: request.body.foodNameS, hostName: request.body.hostNameS,date: request.body.date})
+    foodName: request.body.foodNameS.capitalize(), hostName: request.body.hostNameS.capitalize(),date: request.body.date})
     .then(result => {
         console.log('Movie added')
         response.redirect('/')
@@ -39,13 +46,6 @@ app.post('/addMovie', (request, response) => {
     .catch(error => console.error(error))
 })
 
-app.put('/addOneLike', (request, response) => {
-    db.collection('movies').updateOne({movieName: request.body.movieNameS, foodName: request.body.foodNameS,date: request.body.date})
-    .then(result => {
-        console.log('Date added')
-    })
-    .catch(error => console.error(error))
-})
 
 app.delete('/deleteMovie', (request, response) => {
     db.collection('movies').deleteOne({movieName: request.body.movieNameS})
