@@ -24,8 +24,8 @@
         <li class="movie">
             <span><%= info[i].movieName %></span>
             <span><%= info[i].foodName %></span>
+            <span><%= info[i].hostName %></span>
             <span><%= info[i].date %></span>
-            <span class='fa fa-thumbs-up'></span>
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
@@ -36,8 +36,9 @@
     <form action="/addMovie" method="POST">
         <input type="text" placeholder="Movie Title" name="movieNameS">
         <input type="text" placeholder="Food" name="foodNameS">
+        <input type="text" placeholder="host" name="hostNameS">
         <input type="date" placeholder="Date" name="date">
-        <input type="submit">
+        <input type="submit" value = "Submit">
     </form>
     
 

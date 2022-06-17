@@ -31,7 +31,7 @@ app.get('/',(request, response)=>{
 
 app.post('/addMovie', (request, response) => {
     db.collection('movies').insertOne({movieName: request.body.movieNameS,
-    foodName: request.body.foodNameS, date: request.body.date})
+    foodName: request.body.foodNameS, hostName: request.body.hostNameS,date: request.body.date})
     .then(result => {
         console.log('Movie added')
         response.redirect('/')
