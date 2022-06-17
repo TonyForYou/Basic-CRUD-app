@@ -30,8 +30,8 @@ app.get('/',(request, response)=>{
 })
 
 app.post('/addMovie', (request, response) => {
-    db.collection('movies').insertOne({movieName: request.body.movieName,
-    foodName: request.body.foodName, likes: 0})
+    db.collection('movies').insertOne({movieName: request.body.movieNameS,
+    foodName: request.body.foodNameS, date: request.body.date})
     .then(result => {
         console.log('Movie added')
         response.redirect('/')
@@ -40,20 +40,11 @@ app.post('/addMovie', (request, response) => {
 })
 
 app.put('/addOneLike', (request, response) => {
-    db.collection('movies').updateOne({movieName: request.body.movieNameS, foodName: request.body.foodNameS,likes: request.body.likesS},{
-        $set: {
-            likes:request.body.likesS + 1
-          }
-    },{
-        sort: {_id: -1},
-        upsert: true
-    })
+    db.collection('movies').updateOne({movieName: request.body.movieNameS, foodName: request.body.foodNameS,date: request.body.date})
     .then(result => {
-        console.log('Added One Like')
-        response.json('Like Added')
+        console.log('Date added')
     })
     .catch(error => console.error(error))
-
 })
 
 app.delete('/deleteMovie', (request, response) => {

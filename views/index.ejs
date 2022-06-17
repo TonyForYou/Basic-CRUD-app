@@ -23,8 +23,8 @@
     <% for(let i=0; i < info.length; i++) {%>
         <li class="movie">
             <span><%= info[i].movieName %></span>
-            <span><%= info[i].food %></span>
-            <span><%= info[i].likes %></span>
+            <span><%= info[i].foodName %></span>
+            <span><%= info[i].date %></span>
             <span class='fa fa-thumbs-up'></span>
             <span class='fa fa-trash'></span>
         </li>
@@ -34,8 +34,8 @@
     <h2>Add a movie!</h2>
 
     <form action="/addMovie" method="POST">
-        <input type="text" placeholder="Movie Title" name="movieTitle">
-        <input type="text" placeholder="Food" name="food">
+        <input type="text" placeholder="Movie Title" name="movieNameS">
+        <input type="text" placeholder="Food" name="foodNameS">
         <input type="date" placeholder="Date" name="date">
         <input type="submit">
     </form>
