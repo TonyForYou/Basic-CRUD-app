@@ -10,15 +10,15 @@ Array.from(thumbText).forEach((element)=>{
 })
 
 async function deleteMovie(){
-    const sName = this.parentNode.childNodes[1].innerText
-    const bName = this.parentNode.childNodes[3].innerText
+    const movieName = this.parentNode.childNodes[1].innerText
+    const foodName = this.parentNode.childNodes[3].innerText
     try{
         const response = await fetch('deleteMovie', {
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              'stageNameS': sName,
-              'birthNameS': bName
+              'movieNameS': movieName,
+              'foodNameS': foodName
             })
           })
         const data = await response.json()

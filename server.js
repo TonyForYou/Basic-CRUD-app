@@ -40,7 +40,7 @@ app.post('/addMovie', (request, response) => {
 })
 
 app.put('/addOneLike', (request, response) => {
-    db.collection('movies').updateOne({stageName: request.body.stageNameS, birthName: request.body.birthNameS,likes: request.body.likesS},{
+    db.collection('movies').updateOne({movieName: request.body.movieNameS, foodName: request.body.foodNameS,likes: request.body.likesS},{
         $set: {
             likes:request.body.likesS + 1
           }
@@ -57,7 +57,7 @@ app.put('/addOneLike', (request, response) => {
 })
 
 app.delete('/deleteMovie', (request, response) => {
-    db.collection('movies').deleteOne({stageName: request.body.stageNameS})
+    db.collection('movies').deleteOne({movieName: request.body.movieNameS})
     .then(result => {
         console.log('Movie Deleted')
         response.json('Movie Deleted')
