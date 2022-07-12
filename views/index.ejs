@@ -34,20 +34,20 @@
     </ul> -->
 
     <table style="width:100%">
-        <tr>
+        <tr class="border_bottom">
           <th>Movie</th>
           <th>Food</th>
           <th>Host</th>
           <th>MM/YY</th>
         </tr>
         <% for(var i=0; i < info.length; i++) { %>
-            <tr>
-            <th><%= info[i].movieName %></th>
-            <th><%= info[i].foodName %></th>
-            <th><%= info[i].hostName %></th>
-            <th><%= info[i].date %></th>
-            <th class='fa fa-trash'></th>
-            </tr>
+        <tr>
+            <td><%= info[i].movieName %></td>
+            <td><%= info[i].foodName %></td>
+            <td><%= info[i].hostName %></td>
+            <td><%= info[i].date %></td>
+            <td class='fa fa-trash'></td>
+        </tr>
          <% } %>
       </table>
 
