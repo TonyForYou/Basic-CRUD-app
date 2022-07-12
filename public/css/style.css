@@ -4,19 +4,6 @@ h1{
     justify-content: center;
 }
 
-td, th {
-    border: 1px solid #999;
-    padding: 0.5rem;
-  }
-
-th{
-    border-bottom: 2px solid black
-}
-
-table{
-    border-collapse: collapse;
-}
-
 form{
     overflow-wrap: break-word;
 }

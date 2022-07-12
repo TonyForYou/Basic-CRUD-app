@@ -8,12 +8,14 @@ let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'movie-club'
 
-Object.defineProperty(String.prototype, 'capitalize', {
-    value: function() {
-      return this.charAt(0).toUpperCase() + this.slice(1);
-    },
-    enumerable: false
-  });
+function toTitleCase(str) {
+  return str.replace(
+    /\w\S*/g,
+    function(txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    }
+  );
+}
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
@@ -37,7 +39,7 @@ app.get('/',(request, response)=>{
 
 app.post('/addMovie', (request, response) => {
     db.collection('movies').insertOne({movieName: request.body.movieNameS,
-    foodName: request.body.foodNameS.capitalize(), hostName: request.body.hostNameS.capitalize(),date: request.body.date})
+    foodName: request.body.foodNameS, hostName: request.body.hostNameS,date: request.body.date})
     .then(result => {
         console.log('Movie added')
         response.redirect('/')
@@ -62,3 +64,4 @@ app.listen(process.env.PORT || PORT, ()=>{
 //features to add:
 // capitalize movie names
 //auto rotate between hosts
+
