@@ -4,6 +4,9 @@ const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
 require('dotenv').config()
 
+let db,
+    dbConnectionStr = process.env.DB_STRING,
+    dbName = 'movie-club'
 
 Object.defineProperty(String.prototype, 'capitalize', {
     value: function() {
@@ -11,10 +14,6 @@ Object.defineProperty(String.prototype, 'capitalize', {
     },
     enumerable: false
   });
-
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'movie-club'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
@@ -54,7 +53,6 @@ app.delete('/deleteMovie', (request, response) => {
         response.json('Movie Deleted')
     })
     .catch(error => console.error(error))
-
 })
 
 app.listen(process.env.PORT || PORT, ()=>{
