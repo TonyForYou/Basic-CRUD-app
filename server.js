@@ -60,3 +60,7 @@ app.delete('/deleteMovie', (request, response) => {
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
+
+//features to add:
+// capitalize movie names
+//auto rotate between hosts
